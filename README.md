@@ -1,2 +1,2 @@
-# HTTPServer
-Simple http server
+# HTTPFileServer
+Simple http file server
