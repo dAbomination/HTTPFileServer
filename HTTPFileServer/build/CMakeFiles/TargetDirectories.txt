@@ -1,0 +1,3 @@
+/home/denis/yandex/project/HTTPFileServer/HTTPFileServer/build/CMakeFiles/HTTPFileServer.dir
+/home/denis/yandex/project/HTTPFileServer/HTTPFileServer/build/CMakeFiles/edit_cache.dir
+/home/denis/yandex/project/HTTPFileServer/HTTPFileServer/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o CMakeFiles/HTTPFileServer.dir/include/http_server/db_adapter/db_adapter.cpp.o -o HTTPFileServer  -lpqxx -lpq /usr/lib/x86_64-linux-gnu/libpistache.so 
