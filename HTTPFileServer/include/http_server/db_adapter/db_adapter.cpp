@@ -12,10 +12,10 @@ static const std::string DB_PORT = "http_server_disk";
 db_adapter::db_adapter() {    
     try {     
         db_con_ = std::make_unique<pqxx::connection>("\
-            dbname = postgresql\
-            user = user\
-            password = 123\
-            hostaddr = 127.0.0.1\
+            dbname = postgresql \
+            user = user \
+            password = 123 \
+            hostaddr = 127.0.0.1 \
             port = 5432");
     }
     catch (const std::exception &e) {
