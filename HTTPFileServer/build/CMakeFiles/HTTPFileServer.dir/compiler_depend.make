@@ -413,6 +413,7 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/bits/regex.tcc \
   /usr/include/c++/11/bits/regex_executor.h \
   /usr/include/c++/11/bits/regex_executor.tcc \
+  ../include/http_server/date/date.h \
   /usr/include/rapidjson/document.h \
   /usr/include/rapidjson/stringbuffer.h \
   /usr/include/rapidjson/stream.h \
@@ -1183,6 +1184,7 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
   /usr/include/c++/11/bits/regex.tcc \
   /usr/include/c++/11/bits/regex_executor.h \
   /usr/include/c++/11/bits/regex_executor.tcc \
+  ../include/http_server/date/date.h \
   /usr/include/rapidjson/document.h \
   /usr/include/rapidjson/reader.h \
   /usr/include/rapidjson/allocators.h \
@@ -1333,8 +1335,6 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/pqxx/basic_connection.hxx:
 
-/usr/include/pqxx/connectionpolicy.hxx:
-
 /usr/include/pqxx/connection:
 
 /usr/include/pqxx/types.hxx:
@@ -1376,6 +1376,10 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 /usr/include/pqxx/pqxx:
 
 /usr/include/rapidjson/document.h:
+
+/usr/include/pqxx/connectionpolicy.hxx:
+
+../include/http_server/date/date.h:
 
 /usr/include/c++/11/bits/regex_executor.h:
 

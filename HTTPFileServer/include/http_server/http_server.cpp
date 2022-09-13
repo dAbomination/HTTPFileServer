@@ -16,7 +16,14 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
         WronImportsRequest(resp);
         return;
     }
-    
+    // Check if updateTime is valid
+    std::string update_date = doc["updateDate"].GetString();      
+    std::cout << update_date << std::endl; 
+    if( !UpdateDateIsValid(update_date) ) {
+        WronImportsRequest(resp);
+        return;
+    }
+
     const rapidjson::Value& items = doc["items"];
     // All data for sql request
     std::vector<item_imports> sql_items_imports;
@@ -50,7 +57,8 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
                 item_url,
                 parentId,
                 str_to_item_type.at(items[i]["type"].GetString()),
-                item_size
+                item_size,
+                update_date
             });            
         }
         else {
@@ -59,7 +67,8 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
                 item_url,
                 parentId,
                 str_to_item_type.at(items[i]["type"].GetString()),
-                item_size
+                item_size,
+                update_date
             });
         }
         
@@ -147,7 +156,13 @@ void http_server::GetItemTreeInformation(
         doc.GetAllocator());
     json_info.AddMember("type",
         rapidjson::Value(item_type_to_str.at(item_info.type).c_str(), doc.GetAllocator()).Move(),
+        doc.GetAllocator());    
+
+    ConvertTimeStr(item_info.updateDate);    
+    json_info.AddMember("date",
+        rapidjson::Value(item_info.updateDate.c_str(), doc.GetAllocator()).Move(),
         doc.GetAllocator());
+
     // For File field "children" = null
     if( item_info.type == item_type::FILE_ITEM ) {
         // Add size
@@ -228,4 +243,18 @@ void http_server::start() {
 
 void http_server::stop() {
     http_endpoint_->shutdown();    
+}
+
+bool http_server::UpdateDateIsValid(const std::string& s) {
+    using namespace date;
+    std::istringstream in{s};
+    date::sys_time<std::chrono::milliseconds> tp;
+    in >> parse("%FT%TZ", tp);
+    return !in.fail();
+}
+
+void http_server::ConvertTimeStr(std::string& time_str) {
+    size_t space_pos = time_str.find(' ');
+    time_str[space_pos] = 'T';
+    time_str += "Z";
 }

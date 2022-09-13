@@ -5,10 +5,12 @@
 #include <pistache/router.h>
 #include <unordered_map>
 
+#include "date/date.h"
 #include "../include/rapidjson/document.h" 
 #include "../include/rapidjson/stringbuffer.h"
 #include "../include/rapidjson/writer.h"
 #include "db_adapter/db_adapter.h"
+
 
 using namespace Pistache;
 using namespace Pistache::Rest;
@@ -25,6 +27,11 @@ public:
 private:  
     inline void WronImportsRequest(Http::ResponseWriter& resp);
     inline void NonExistentId(Http::ResponseWriter& resp);
+
+    // Returns true if updateDate is correct
+    bool UpdateDateIsValid(const std::string& s);
+    // Convert from YY:MM:DD HH:MM:SS to YY:MM:DDTHH:MM:SS.000Z
+    void ConvertTimeStr(std::string& time_str);
 
     // Requests
     void ImportsRequest(const Rest::Request& req, Http::ResponseWriter resp);

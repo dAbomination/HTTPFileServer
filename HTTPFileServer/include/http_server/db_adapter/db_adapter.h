@@ -8,7 +8,7 @@
 #include <unordered_map>
 #include <string_view>
 
-enum item_type{
+enum item_type {
     FILE_ITEM = 1,
     FOLDER_ITEM = 2
 };
@@ -19,6 +19,7 @@ struct item_imports{
     std::optional<std::string> parentId = std::nullopt;
     item_type type;
     std::optional<int64_t> size = std::nullopt;
+    std::string updateDate;
 };
 
 static const std::unordered_map<item_type, std::string> item_type_to_str = {
