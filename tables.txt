@@ -1,0 +1,17 @@
+CREATE TABLE FilesData
+(
+    id text PRIMARY KEY NOT NULL,
+    url text,
+    parentId text,
+    type character varying(10) NOT NULL,
+    size bigint,
+    updateDate timestamp without time zone    
+)
+
+CREATE TABLE updates
+(    
+    CONSTRAINT UpdateDates_pkey PRIMARY KEY (updateDate),
+    updateDate timestamp without time zone NOT NULL,
+    id text NOT NULL,
+    data text NOT NULL
+)

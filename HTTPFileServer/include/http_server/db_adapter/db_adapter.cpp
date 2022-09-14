@@ -1,6 +1,7 @@
 #include "db_adapter.h"
 
 static const std::string FILES_DATA_TABLE_NAME = "filesdata";
+static const std::string FILES_UPDATES_TABLE_NAME = "updates";
 
 static const std::string DB_NAME = "http_server_disk";
 static const std::string DB_USER = "postgres";
@@ -15,7 +16,7 @@ db_adapter::db_adapter() {
             dbname = " + DB_NAME + "\
             user = " + DB_USER + "\
             password = " + DB_PASSWORD + "\
-            hostaddr = 1" + DB_HOSTADDR + "\
+            hostaddr = " + DB_HOSTADDR + "\
             port = " + DB_PORT );
     }
     catch (const std::exception &e) {
@@ -31,7 +32,7 @@ void db_adapter::GetIds(FileDependencies& paths) {
     
     for(auto const& row : res) {
         if(!row.at(1).is_null()) {
-            paths[row.at(1).c_str()].push_back(row.at(0).c_str());
+            paths[row.at(1).c_str()].insert(row.at(0).c_str());
             paths[row.at(0).c_str()];            
         }        
         // if item has no children - empty vector
@@ -74,6 +75,24 @@ item_imports db_adapter::GetItemInfo(const std::string& id) {
     };
 }
 
+std::unordered_set<std::string> db_adapter::GetUpdatedIds(
+    const std::string& from_date,
+    const std::string& to_date) {
+
+    pqxx::work tx(*db_con_);
+    std::string sql = "SELECT id FROM updates WHERE \
+        updatedate >= '" + from_date +
+        "' and updatedate <= '" + to_date + "'";
+    pqxx::result bd_request_result = tx.exec(sql);
+
+    std::unordered_set<std::string> result;
+    for(auto const& row : bd_request_result) {
+        result.insert(row.at(0).as<std::string>());
+    }  
+
+    return result;
+}
+
 void db_adapter::InsertItem(const item_imports& import_item) {
     pqxx::work tx(*db_con_);
 
@@ -89,7 +108,6 @@ void db_adapter::InsertItem(const item_imports& import_item) {
     if(import_item.url.has_value()) {
         url = "'" + import_item.url.value() + "'"; 
     }
-
 
     std::string sql = "INSERT INTO " + FILES_DATA_TABLE_NAME + " \
         VALUES('" + import_item.id + "', " +
@@ -128,7 +146,7 @@ void db_adapter::UpdateItem(const item_imports& update_item) {
     std::string sql = "UPDATE " + FILES_DATA_TABLE_NAME + " \
         SET url = " + url + " , " +
         "parentId = " + parentId + ", " +
-        "type = '" + item_type_to_str.at(update_item.type) + "', "
+        "type = '" + item_type_to_str.at(update_item.type) + "', " +
         "size = " + size + ", " +
         "updateDate = '" + update_item.updateDate + "' " +
         "WHERE id = '" + update_item.id + "'";
@@ -143,6 +161,23 @@ void db_adapter::UpdateItem(const std::vector<item_imports>& update_items) {
     }
 }
 
+void db_adapter::InsertUpdates(const update_date_data& data) {
+    pqxx::work tx(*db_con_);
+    std::string sql = "INSERT INTO " + FILES_UPDATES_TABLE_NAME + " \
+        VALUES('" + data.updateDate + "', '" +
+        data.id + "' , '" + 
+        data.raw_json_data + "')";
+
+    tx.exec(sql);
+    tx.commit();
+}
+
+void db_adapter::InsertUpdates(const std::vector<update_date_data>& data) {
+    for(const auto& single_data : data) {
+        InsertUpdates(single_data);
+    }
+}
+
 void db_adapter::DeleteItem(const std::string& id) {
     pqxx::work tx(*db_con_);
 
@@ -151,4 +186,37 @@ void db_adapter::DeleteItem(const std::string& id) {
 
     tx.exec(sql);
     tx.commit();
+}
+
+void db_adapter::DeleteUpdates(const std::string& id) {
+    pqxx::work tx(*db_con_);
+
+    std::string sql = "DELETE FROM " + FILES_UPDATES_TABLE_NAME + " \
+        WHERE id = '" + id + "'" ;
+
+    tx.exec(sql);
+    tx.commit();
+}
+
+std::vector<update_date_data> db_adapter::GetItemHistory(
+    const std::string& id,
+    const std::string& date_start,
+    const std::string& date_end) {
+
+    pqxx::work tx(*db_con_);
+    std::string sql = "SELECT * FROM updates WHERE \
+        updatedate >= '" + date_start +
+        "' and updatedate < '" + date_end +
+        "' and id = '" + id + "'";
+    pqxx::result bd_request_result = tx.exec(sql);
+
+    std::vector<update_date_data> result;
+    for(auto const& row : bd_request_result) {
+        result.push_back({
+            row.at(0).as<std::string>(),
+            row.at(1).as<std::string>(),
+            row.at(2).as<std::string>()
+        });
+    } 
+    return result; 
 }
