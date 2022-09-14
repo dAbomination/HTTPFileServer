@@ -3,9 +3,9 @@
 static const std::string FILES_DATA_TABLE_NAME = "filesdata";
 static const std::string FILES_UPDATES_TABLE_NAME = "updates";
 
-static const std::string DB_NAME = "http_server_disk";
-static const std::string DB_USER = "postgres";
-static const std::string DB_PASSWORD = "Ltybc1993";
+static const std::string DB_NAME = "http_server_project";
+static const std::string DB_USER = "user";
+static const std::string DB_PASSWORD = "123";
 static const std::string DB_HOSTADDR = "127.0.0.1";
 static const std::string DB_PORT = "5432";
 

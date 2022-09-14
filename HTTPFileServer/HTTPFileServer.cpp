@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-static const int CONNECTION_PORT = 9080;
+static const int CONNECTION_PORT = 80;
 
 int main(int argc, char* argv[]) {    
     Port port(CONNECTION_PORT);
