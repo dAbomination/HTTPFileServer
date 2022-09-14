@@ -17,8 +17,7 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
         return;
     }
     // Check if updateTime is valid
-    std::string update_date = doc["updateDate"].GetString();      
-    std::cout << update_date << std::endl; 
+    std::string update_date = doc["updateDate"].GetString();
     if( !UpdateDateIsValid(update_date) ) {
         WronImportsRequest(resp);
         return;
@@ -49,27 +48,23 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
         if( items[i].HasMember("url") && !items[i]["url"].IsNull()) {
             item_url = items[i]["url"].GetString();            
         }
+
+        item_imports temp_import = {
+            items[i]["id"].GetString(),
+            item_url,
+            parentId,
+            str_to_item_type.at(items[i]["type"].GetString()),
+            item_size,
+            update_date
+        };
+
         // Check if this id already esists
         // if id already exist, just update it
         if( ids_to_children_.count(items[i]["id"].GetString()) > 0 ) {
-            sql_items_updates.push_back(item_imports{
-                items[i]["id"].GetString(),
-                item_url,
-                parentId,
-                str_to_item_type.at(items[i]["type"].GetString()),
-                item_size,
-                update_date
-            });            
+            sql_items_updates.push_back(std::move(temp_import));            
         }
         else {
-            sql_items_imports.push_back(item_imports{
-                items[i]["id"].GetString(),
-                item_url,
-                parentId,
-                str_to_item_type.at(items[i]["type"].GetString()),
-                item_size,
-                update_date
-            });
+            sql_items_imports.push_back(std::move(temp_import));
         }
         
     }
@@ -184,7 +179,7 @@ void http_server::GetItemTreeInformation(
                 rapidjson::Value child_json_info(rapidjson::kObjectType);
                 GetItemTreeInformation(child_id, child_json_info, doc, current_folder_size);
                 
-                children_array.PushBack(child_json_info.Move(), doc.GetAllocator());
+                children_array.PushBack(child_json_info, doc.GetAllocator());
             }
             json_info.AddMember("size",
                 rapidjson::Value().SetInt64(current_folder_size).Move(),

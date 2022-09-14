@@ -3,20 +3,20 @@
 static const std::string FILES_DATA_TABLE_NAME = "filesdata";
 
 static const std::string DB_NAME = "http_server_disk";
-static const std::string DB_USER = "http_server_disk";
-static const std::string DB_PASSWORD = "http_server_disk";
-static const std::string DB_HOSTADDR = "http_server_disk";
-static const std::string DB_PORT = "http_server_disk";
+static const std::string DB_USER = "postgres";
+static const std::string DB_PASSWORD = "Ltybc1993";
+static const std::string DB_HOSTADDR = "127.0.0.1";
+static const std::string DB_PORT = "5432";
 
 // Connect to database
 db_adapter::db_adapter() {    
     try {     
         db_con_ = std::make_unique<pqxx::connection>("\
-            dbname = postgresql \
-            user = user \
-            password = 123 \
-            hostaddr = 127.0.0.1 \
-            port = 5432");
+            dbname = " + DB_NAME + "\
+            user = " + DB_USER + "\
+            password = " + DB_PASSWORD + "\
+            hostaddr = 1" + DB_HOSTADDR + "\
+            port = " + DB_PORT );
     }
     catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;

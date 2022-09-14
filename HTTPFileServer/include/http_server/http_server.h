@@ -30,14 +30,14 @@ private:
 
     // Returns true if updateDate is correct
     bool UpdateDateIsValid(const std::string& s);
-    // Convert from YY:MM:DD HH:MM:SS to YY:MM:DDTHH:MM:SS.000Z
+    // Convert from YY:MM:DD HH:MM:SS to YY:MM:DDTHH:MM:SSZ
     void ConvertTimeStr(std::string& time_str);
 
     // Requests
     void ImportsRequest(const Rest::Request& req, Http::ResponseWriter resp);
     void DeleteRequest(const Rest::Request& req, Http::ResponseWriter resp);
-    void GetNodesRequest(const Rest::Request& req, Http::ResponseWriter resp);
-    
+    void GetNodesRequest(const Rest::Request& req, Http::ResponseWriter resp);      
+
     // Whether it's a folder or a file
     void DeleteItemId(const std::string& id);
     // For folder return all the internal items information    

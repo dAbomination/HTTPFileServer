@@ -3,11 +3,11 @@
 
 CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/stdc-predef.h \
-  ../include/rapidjson/document.h \
-  ../include/rapidjson/reader.h \
-  ../include/rapidjson/allocators.h \
-  ../include/rapidjson/rapidjson.h \
-  /usr/include/c++/11/cstdlib \
+  ../include/http_server/http_server.h \
+  /usr/include/pistache/endpoint.h \
+  /usr/include/pistache/http.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/utility \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/features.h \
@@ -20,6 +20,27 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/c++/11/pstl/pstl_config.h \
+  /usr/include/c++/11/bits/stl_relops.h \
+  /usr/include/c++/11/bits/stl_pair.h \
+  /usr/include/c++/11/bits/move.h \
+  /usr/include/c++/11/type_traits \
+  /usr/include/c++/11/initializer_list \
+  /usr/include/c++/11/bits/stl_algobase.h \
+  /usr/include/c++/11/bits/functexcept.h \
+  /usr/include/c++/11/bits/exception_defines.h \
+  /usr/include/c++/11/bits/cpp_type_traits.h \
+  /usr/include/c++/11/ext/type_traits.h \
+  /usr/include/c++/11/ext/numeric_traits.h \
+  /usr/include/c++/11/bits/stl_iterator_base_types.h \
+  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/11/bits/concept_check.h \
+  /usr/include/c++/11/debug/assertions.h \
+  /usr/include/c++/11/bits/stl_iterator.h \
+  /usr/include/c++/11/bits/ptr_traits.h \
+  /usr/include/c++/11/debug/debug.h \
+  /usr/include/c++/11/bits/predefined_ops.h \
+  /usr/include/c++/11/bits/stl_algo.h \
+  /usr/include/c++/11/cstdlib \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
@@ -58,63 +79,67 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/c++/11/bits/std_abs.h \
-  /usr/include/c++/11/cstring \
-  /usr/include/string.h \
-  /usr/include/strings.h \
+  /usr/include/c++/11/bits/algorithmfwd.h \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_tempbuf.h \
+  /usr/include/c++/11/bits/stl_construct.h \
+  /usr/include/c++/11/new \
+  /usr/include/c++/11/bits/exception.h \
+  /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/stl_function.h \
+  /usr/include/c++/11/backward/binders.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/range_access.h \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/functional_hash.h \
+  /usr/include/c++/11/bits/hash_bytes.h \
+  /usr/include/c++/11/bits/refwrap.h \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/typeinfo \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
+  /usr/include/c++/11/ext/new_allocator.h \
+  /usr/include/c++/11/bits/memoryfwd.h \
+  /usr/include/c++/11/ext/alloc_traits.h \
+  /usr/include/c++/11/bits/alloc_traits.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
   /usr/include/stdint.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/inttypes.h \
-  /usr/include/c++/11/cassert \
-  /usr/include/assert.h \
-  /usr/include/c++/11/utility \
-  /usr/include/c++/11/bits/stl_relops.h \
-  /usr/include/c++/11/bits/stl_pair.h \
-  /usr/include/c++/11/bits/move.h \
-  /usr/include/c++/11/type_traits \
-  /usr/include/c++/11/initializer_list \
-  ../include/rapidjson/internal/meta.h \
-  ../include/rapidjson/rapidjson.h \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/c++/11/bits/parse_numbers.h \
   /usr/include/c++/11/memory \
-  /usr/include/c++/11/bits/stl_algobase.h \
-  /usr/include/c++/11/bits/functexcept.h \
-  /usr/include/c++/11/bits/exception_defines.h \
-  /usr/include/c++/11/bits/cpp_type_traits.h \
-  /usr/include/c++/11/ext/type_traits.h \
-  /usr/include/c++/11/ext/numeric_traits.h \
-  /usr/include/c++/11/bits/stl_iterator_base_types.h \
-  /usr/include/c++/11/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/11/bits/concept_check.h \
-  /usr/include/c++/11/debug/assertions.h \
-  /usr/include/c++/11/bits/stl_iterator.h \
-  /usr/include/c++/11/bits/ptr_traits.h \
-  /usr/include/c++/11/debug/debug.h \
-  /usr/include/c++/11/bits/predefined_ops.h \
-  /usr/include/c++/11/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h \
-  /usr/include/c++/11/ext/new_allocator.h \
-  /usr/include/c++/11/new \
-  /usr/include/c++/11/bits/exception.h \
-  /usr/include/c++/11/bits/memoryfwd.h \
-  /usr/include/c++/11/bits/stl_construct.h \
-  /usr/include/c++/11/bits/stl_uninitialized.h \
-  /usr/include/c++/11/ext/alloc_traits.h \
-  /usr/include/c++/11/bits/alloc_traits.h \
-  /usr/include/c++/11/bits/stl_tempbuf.h \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
   /usr/include/c++/11/bits/align.h \
   /usr/include/c++/11/bit \
-  /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/unique_ptr.h \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/range_access.h \
-  /usr/include/c++/11/bits/invoke.h \
-  /usr/include/c++/11/bits/stl_function.h \
-  /usr/include/c++/11/backward/binders.h \
-  /usr/include/c++/11/bits/functional_hash.h \
-  /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/iosfwd \
   /usr/include/c++/11/bits/stringfwd.h \
@@ -128,10 +153,7 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
-  /usr/include/c++/11/typeinfo \
   /usr/include/c++/11/bits/allocated_ptr.h \
-  /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/ext/aligned_buffer.h \
   /usr/include/c++/11/ext/atomicity.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
@@ -140,11 +162,6 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
   /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
-  /usr/include/time.h \
-  /usr/include/x86_64-linux-gnu/bits/time.h \
-  /usr/include/x86_64-linux-gnu/bits/timex.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
@@ -160,42 +177,10 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/bits/atomic_lockfree_defines.h \
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
-  /usr/include/c++/11/pstl/execution_defs.h \
-  /usr/include/c++/11/limits \
-  ../include/rapidjson/stream.h \
-  ../include/rapidjson/encodings.h \
-  ../include/rapidjson/encodedstream.h \
-  ../include/rapidjson/memorystream.h \
-  ../include/rapidjson/internal/clzll.h \
-  ../include/rapidjson/internal/stack.h \
-  ../include/rapidjson/allocators.h \
-  ../include/rapidjson/internal/swap.h \
-  /usr/include/c++/11/cstddef \
-  ../include/rapidjson/internal/strtod.h \
-  ../include/rapidjson/internal/ieee754.h \
-  ../include/rapidjson/internal/biginteger.h \
-  ../include/rapidjson/internal/diyfp.h \
-  ../include/rapidjson/internal/clzll.h \
-  ../include/rapidjson/internal/pow10.h \
-  /usr/include/c++/11/climits \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
-  ../include/rapidjson/error/error.h \
-  ../include/rapidjson/rapidjson.h \
-  ../include/rapidjson/internal/strfunc.h \
-  ../include/rapidjson/stream.h \
-  ../include/rapidjson/rapidjson.h \
-  /usr/include/c++/11/iterator \
-  /usr/include/c++/11/bits/stream_iterator.h \
-  /usr/include/c++/11/bits/streambuf_iterator.h \
-  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/bits/char_traits.h \
   /usr/include/c++/11/bits/localefwd.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h \
   /usr/include/c++/11/clocale \
@@ -206,8 +191,6 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/bits/ios_base.h \
   /usr/include/c++/11/bits/locale_classes.h \
   /usr/include/c++/11/string \
-  /usr/include/c++/11/bits/char_traits.h \
-  /usr/include/c++/11/cstdint \
   /usr/include/c++/11/bits/ostream_insert.h \
   /usr/include/c++/11/bits/cxxabi_forced.h \
   /usr/include/c++/11/bits/basic_string.h \
@@ -235,42 +218,15 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/system_error \
   /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
   /usr/include/c++/11/stdexcept \
+  /usr/include/c++/11/streambuf \
   /usr/include/c++/11/bits/streambuf.tcc \
-  ../include/http_server/http_server.h \
-  /usr/include/pistache/endpoint.h \
-  /usr/include/pistache/http.h \
-  /usr/include/c++/11/algorithm \
-  /usr/include/c++/11/bits/stl_algo.h \
-  /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
-  /usr/include/c++/11/bits/uniform_int_dist.h \
-  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
-  /usr/include/c++/11/functional \
-  /usr/include/c++/11/bits/std_function.h \
-  /usr/include/c++/11/unordered_map \
-  /usr/include/c++/11/bits/hashtable.h \
-  /usr/include/c++/11/bits/hashtable_policy.h \
-  /usr/include/c++/11/bits/enable_special_members.h \
-  /usr/include/c++/11/bits/node_handle.h \
-  /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/bits/erase_if.h \
-  /usr/include/c++/11/vector \
-  /usr/include/c++/11/bits/stl_vector.h \
-  /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc \
-  /usr/include/c++/11/chrono \
-  /usr/include/c++/11/ratio \
-  /usr/include/c++/11/ctime \
-  /usr/include/c++/11/bits/parse_numbers.h \
-  /usr/include/c++/11/sstream \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/ios \
   /usr/include/c++/11/bits/basic_ios.h \
   /usr/include/c++/11/bits/locale_facets.h \
   /usr/include/c++/11/cwctype \
   /usr/include/wctype.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
   /usr/include/c++/11/bits/locale_facets.tcc \
   /usr/include/c++/11/bits/basic_ios.tcc \
@@ -282,6 +238,7 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/x86_64-linux-gnu/bits/timerfd.h \
   /usr/include/pistache/async.h \
   /usr/include/pistache/typeid.h \
+  /usr/include/c++/11/cstddef \
   /usr/include/c++/11/atomic \
   /usr/include/c++/11/condition_variable \
   /usr/include/c++/11/bits/std_mutex.h \
@@ -302,6 +259,8 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/pistache/http_headers.h \
   /usr/include/pistache/http_header.h \
   /usr/include/pistache/mime.h \
+  /usr/include/c++/11/cassert \
+  /usr/include/assert.h \
   /usr/include/c++/11/cmath \
   /usr/include/math.h \
   /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -327,6 +286,9 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/tr1/poly_laguerre.tcc \
   /usr/include/c++/11/tr1/riemann_zeta.tcc \
   /usr/include/pistache/net.h \
+  /usr/include/c++/11/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/netdb.h \
   /usr/include/netinet/in.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
@@ -359,6 +321,16 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/iostream \
   /usr/include/pistache/config.h \
   /usr/include/pistache/flags.h \
+  /usr/include/c++/11/climits \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/11/bitset \
   /usr/include/pistache/tcp.h \
   /usr/include/pistache/prototype.h \
@@ -391,6 +363,8 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/pistache/ssl_wrappers.h \
   /usr/include/pistache/router.h \
   /usr/include/c++/11/regex \
+  /usr/include/c++/11/iterator \
+  /usr/include/c++/11/bits/stream_iterator.h \
   /usr/include/c++/11/locale \
   /usr/include/c++/11/bits/locale_facets_nonio.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
@@ -415,17 +389,32 @@ CMakeFiles/HTTPFileServer.dir/HTTPFileServer.cpp.o: ../HTTPFileServer.cpp \
   /usr/include/c++/11/bits/regex_executor.tcc \
   ../include/http_server/date/date.h \
   /usr/include/rapidjson/document.h \
-  /usr/include/rapidjson/stringbuffer.h \
+  /usr/include/rapidjson/reader.h \
+  /usr/include/rapidjson/allocators.h \
+  /usr/include/rapidjson/rapidjson.h \
+  /usr/include/inttypes.h \
   /usr/include/rapidjson/stream.h \
+  /usr/include/rapidjson/encodings.h \
+  /usr/include/rapidjson/encodedstream.h \
+  /usr/include/rapidjson/memorystream.h \
+  /usr/include/rapidjson/internal/meta.h \
   /usr/include/rapidjson/rapidjson.h \
   /usr/include/rapidjson/internal/stack.h \
-  /usr/include/rapidjson/writer.h \
+  /usr/include/rapidjson/allocators.h \
+  /usr/include/rapidjson/internal/swap.h \
+  /usr/include/rapidjson/internal/strtod.h \
+  /usr/include/rapidjson/internal/ieee754.h \
+  /usr/include/rapidjson/internal/biginteger.h \
+  /usr/include/rapidjson/internal/diyfp.h \
+  /usr/include/rapidjson/internal/pow10.h \
+  /usr/include/rapidjson/error/error.h \
+  /usr/include/rapidjson/rapidjson.h \
   /usr/include/rapidjson/internal/strfunc.h \
+  /usr/include/rapidjson/stream.h \
+  /usr/include/rapidjson/stringbuffer.h \
+  /usr/include/rapidjson/writer.h \
   /usr/include/rapidjson/internal/dtoa.h \
   /usr/include/rapidjson/internal/itoa.h \
-  /usr/include/rapidjson/rapidjson.h \
-  /usr/include/rapidjson/internal/diyfp.h \
-  /usr/include/rapidjson/internal/ieee754.h \
   /usr/include/rapidjson/internal/itoa.h \
   /usr/include/rapidjson/stringbuffer.h \
   ../include/http_server/db_adapter/db_adapter.h \
@@ -1283,16 +1272,6 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
   /usr/include/pqxx/transactor.hxx
 
 
-/usr/include/rapidjson/internal/pow10.h:
-
-/usr/include/rapidjson/internal/biginteger.h:
-
-/usr/include/rapidjson/internal/swap.h:
-
-/usr/include/rapidjson/encodedstream.h:
-
-/usr/include/rapidjson/allocators.h:
-
 ../include/http_server/http_server.cpp:
 
 /usr/include/pqxx/transactor.hxx:
@@ -1347,10 +1326,6 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/pqxx/result.hxx:
 
-/usr/include/rapidjson/memorystream.h:
-
-/usr/include/pqxx/binarystring.hxx:
-
 /usr/include/pqxx/result_iterator.hxx:
 
 /usr/include/pqxx/binarystring:
@@ -1361,8 +1336,6 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/pqxx/internal/encoding_group.hxx:
 
-/usr/include/rapidjson/internal/ieee754.h:
-
 /usr/include/rapidjson/internal/itoa.h:
 
 /usr/include/rapidjson/internal/dtoa.h:
@@ -1370,6 +1343,24 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 /usr/include/rapidjson/writer.h:
 
 /usr/include/rapidjson/stringbuffer.h:
+
+/usr/include/rapidjson/internal/pow10.h:
+
+/usr/include/rapidjson/internal/biginteger.h:
+
+/usr/include/rapidjson/internal/ieee754.h:
+
+/usr/include/rapidjson/internal/swap.h:
+
+/usr/include/pqxx/binarystring.hxx:
+
+/usr/include/rapidjson/memorystream.h:
+
+/usr/include/rapidjson/encodedstream.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/rapidjson/allocators.h:
 
 /usr/include/pqxx/pipeline:
 
@@ -1409,6 +1400,8 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/bits/locale_facets_nonio.h:
 
+/usr/include/c++/11/bits/stream_iterator.h:
+
 /usr/include/pqxx/connection.hxx:
 
 /usr/include/pistache/log.h:
@@ -1435,6 +1428,8 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
 /usr/include/x86_64-linux-gnu/bits/eventfd.h:
@@ -1448,6 +1443,18 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 /usr/include/rapidjson/internal/strtod.h:
 
 /usr/include/c++/11/bitset:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/rapidjson/internal/meta.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
 /usr/include/pqxx/transaction_base.hxx:
 
@@ -1495,7 +1502,11 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/netdb.h:
 
+/usr/include/strings.h:
+
 /usr/include/c++/11/tr1/riemann_zeta.tcc:
+
+/usr/include/c++/11/tr1/poly_hermite.tcc:
 
 /usr/include/c++/11/tr1/modified_bessel_func.tcc:
 
@@ -1523,81 +1534,25 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
+/usr/include/assert.h:
+
+/usr/include/c++/11/cassert:
+
 /usr/include/pistache/mime.h:
 
-/usr/include/pqxx/prepared_statement.hxx:
+/usr/include/c++/11/regex:
 
-/usr/include/pistache/http_header.h:
+/usr/include/x86_64-linux-gnu/asm/socket.h:
 
-/usr/include/pistache/http_headers.h:
+/usr/include/x86_64-linux-gnu/sys/select.h:
 
-/usr/include/c++/11/bits/locale_conv.h:
+/usr/include/c++/11/cstdio:
 
-/usr/include/pistache/http_defs.h:
+/usr/include/pqxx/compiler-internal-post.hxx:
 
-/usr/include/c++/11/bits/unordered_set.h:
+/usr/include/c++/11/chrono:
 
-/usr/include/c++/11/optional:
-
-/usr/include/c++/11/bits/stl_multimap.h:
-
-/usr/include/c++/11/bits/stl_map.h:
-
-/usr/include/c++/11/bits/stl_tree.h:
-
-/usr/include/c++/11/map:
-
-/usr/include/c++/11/bits/list.tcc:
-
-/usr/include/c++/11/list:
-
-/usr/include/pqxx/nontransaction:
-
-/usr/include/pistache/cookie.h:
-
-/usr/include/pqxx/connection_base.hxx:
-
-/usr/include/c++/11/mutex:
-
-/usr/include/rapidjson/encodings.h:
-
-/usr/include/c++/11/tr1/poly_laguerre.tcc:
-
-/usr/include/c++/11/bits/std_mutex.h:
-
-/usr/include/c++/11/atomic:
-
-/usr/include/pistache/async.h:
-
-/usr/include/x86_64-linux-gnu/bits/timerfd.h:
-
-/usr/include/x86_64-linux-gnu/sys/timerfd.h:
-
-/usr/include/c++/11/bits/regex_scanner.h:
-
-/usr/include/c++/11/bits/istream.tcc:
-
-/usr/include/c++/11/bits/ostream.tcc:
-
-/usr/include/c++/11/ostream:
-
-/usr/include/pqxx/stream_base.hxx:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
-
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
-
-/usr/include/c++/11/cwctype:
-
-/usr/include/pqxx/largeobject.hxx:
-
-/usr/include/pqxx/internal/type_utils.hxx:
-
-/usr/include/c++/11/unordered_set:
-
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/c++/11/iostream:
 
@@ -1605,45 +1560,19 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/bits/node_handle.h:
 
-/usr/include/pqxx/compiler-public.hxx:
+/usr/include/c++/11/bits/hashtable.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/wchar.h:
-
-/usr/include/pistache/prototype.h:
-
-/usr/include/c++/11/bits/cxxabi_init_exception.h:
-
-/usr/include/c++/11/bits/basic_ios.h:
-
-/usr/include/c++/11/bits/uniform_int_dist.h:
-
-/usr/include/c++/11/cwchar:
-
-/usr/include/unistd.h:
-
-/usr/include/c++/11/bits/stl_algobase.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/in.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
-
-/usr/include/c++/11/bits/postypes.h:
+/usr/include/c++/11/bits/cxxabi_forced.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
-/usr/include/c++/11/bits/this_thread_sleep.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
 
-/usr/include/c++/11/bits/locale_facets.tcc:
+/usr/include/c++/11/unordered_map:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+/usr/include/c++/11/cctype:
 
-/usr/include/c++/11/bits/functional_hash.h:
+/usr/include/c++/11/bits/string_view.tcc:
 
 /usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
 
@@ -1653,19 +1582,9 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/algorithm:
 
-/usr/include/c++/11/bit:
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
 
-/usr/include/assert.h:
-
-/usr/include/c++/11/cstdlib:
-
-/usr/include/c++/11/bits/stl_iterator_base_types.h:
-
-/usr/include/c++/11/bits/stl_raw_storage_iter.h:
-
-/usr/include/rapidjson/internal/strfunc.h:
-
-/usr/include/pistache/http.h:
+/usr/include/c++/11/map:
 
 /usr/include/pqxx/dbtransaction.hxx:
 
@@ -1675,21 +1594,107 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/typeinfo:
 
-/usr/include/c++/11/bits/cxxabi_forced.h:
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
+/usr/include/c++/11/cstring:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
+/usr/include/math.h:
 
-/usr/include/c++/11/debug/assertions.h:
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/alloca.h:
+
+/usr/include/linux/stddef.h:
+
+/usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/c++/11/ext/new_allocator.h:
+
+/usr/include/pqxx/stream_from.hxx:
+
+/usr/include/x86_64-linux-gnu/bits/resource.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/c++/11/bits/invoke.h:
+
+/usr/include/c++/11/pstl/execution_defs.h:
+
+/usr/include/c++/11/bits/algorithmfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/pqxx/errorhandler:
+
+/usr/include/c++/11/bits/allocated_ptr.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
+
+/usr/include/c++/11/cstddef:
+
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/c++/11/system_error:
+
+/usr/include/rapidjson/stream.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/c++/11/bits/stl_deque.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/c++/11/ext/type_traits.h:
 
-/usr/include/pistache/typeid.h:
+/usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/c++/11/pstl/glue_memory_defs.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
+
+/usr/include/c++/11/bits/exception_defines.h:
+
+/usr/include/c++/11/atomic:
+
+/usr/include/linux/limits.h:
+
+/usr/include/c++/11/bits/basic_string.h:
+
+/usr/include/c++/11/bits/shared_ptr_base.h:
+
+/usr/include/c++/11/cstdlib:
+
+/usr/include/c++/11/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/11/bit:
+
+/usr/include/unistd.h:
+
+/usr/include/c++/11/bits/stl_algobase.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
+
+/usr/include/c++/11/cwchar:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
+
+/usr/include/c++/11/bits/functexcept.h:
+
+/usr/include/c++/11/streambuf:
+
+/usr/include/c++/11/bits/regex_executor.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/c++/11/ctime:
 
 /usr/include/c++/11/tuple:
+
+/usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
 
@@ -1703,85 +1708,41 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/bits/stl_pair.h:
 
-/usr/include/c++/11/ext/atomicity.h:
-
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/pistache/string_logger.h:
+/usr/include/c++/11/ext/atomicity.h:
 
-/usr/include/c++/11/bits/unique_ptr.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
-/usr/include/c++/11/bits/move.h:
+/usr/include/c++/11/bits/char_traits.h:
+
+/usr/include/c++/11/ciso646:
+
+/usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/11/bits/hash_bytes.h:
 
-/usr/include/c++/11/regex:
+/usr/include/c++/11/bits/move.h:
 
-/usr/include/x86_64-linux-gnu/asm/socket.h:
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
-/usr/include/x86_64-linux-gnu/sys/select.h:
+/usr/include/pqxx/pipeline.hxx:
 
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
+/usr/include/c++/11/bits/regex_compiler.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+/usr/include/limits.h:
 
-/usr/include/rapidjson/internal/meta.h:
+/usr/include/c++/11/bits/stl_relops.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+/usr/include/c++/11/limits:
 
-/usr/include/pqxx/transaction.hxx:
+/usr/include/c++/11/bits/stl_tempbuf.h:
 
-/usr/include/c++/11/bits/align.h:
-
-/usr/include/pqxx/array.hxx:
-
-/usr/include/c++/11/vector:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/c++/11/tr1/beta_function.tcc:
-
-/usr/include/c++/11/array:
-
-/usr/include/c++/11/bits/sstream.tcc:
-
-/usr/include/c++/11/new:
-
-/usr/include/c++/11/climits:
-
-/usr/include/c++/11/iterator:
-
-/usr/include/c++/11/bits/range_access.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
-
-/usr/include/c++/11/bits/functexcept.h:
-
-/usr/include/asm-generic/bitsperlong.h:
-
-/usr/include/c++/11/bits/concept_check.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
-
-/usr/include/c++/11/streambuf:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/include/pistache/endpoint.h:
-
-/usr/include/pistache/mailbox.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+/usr/include/c++/11/bits/std_function.h:
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
@@ -1793,37 +1754,171 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/type_traits:
 
-../include/rapidjson/internal/pow10.h:
-
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
-
-/usr/include/c++/11/bits/stl_tempbuf.h:
-
-/usr/include/c++/11/bits/std_function.h:
-
-/usr/include/c++/11/bits/stl_construct.h:
-
-/usr/include/c++/11/bits/shared_ptr.h:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
-
-/usr/include/inttypes.h:
-
-/usr/include/c++/11/bits/stl_deque.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
-../include/rapidjson/rapidjson.h:
+/usr/include/stdc-predef.h:
+
+/usr/include/c++/11/bits/alloc_traits.h:
+
+/usr/include/c++/11/bits/vector.tcc:
+
+/usr/include/c++/11/optional:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/c++/11/bits/stl_construct.h:
+
+/usr/include/c++/11/bits/shared_ptr.h:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/pistache/http_defs.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/pqxx/nontransaction:
+
+/usr/include/pistache/cookie.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
 /usr/include/pistache/net.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+../include/http_server/http_server.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/c++/11/bits/stl_iterator.h:
+
+/usr/include/c++/11/climits:
+
+/usr/include/c++/11/bits/sstream.tcc:
+
+/usr/include/c++/11/new:
+
+/usr/include/c++/11/bits/functional_hash.h:
+
+/usr/include/pistache/endpoint.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/x86_64-linux-gnu/sys/timerfd.h:
+
+/usr/include/c++/11/tr1/gamma.tcc:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/c++/11/bits/unordered_map.h:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/errno.h:
+
+/usr/include/features.h:
+
+/usr/include/c++/11/bits/stl_multimap.h:
+
+/usr/include/wchar.h:
+
+/usr/include/pistache/prototype.h:
+
+/usr/include/c++/11/bits/cxxabi_init_exception.h:
+
+/usr/include/pistache/mailbox.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
+
+/usr/include/c++/11/debug/debug.h:
+
+/usr/include/features-time64.h:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/bits/std_abs.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
+
+/usr/include/c++/11/backward/auto_ptr.h:
+
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/endian.h:
+
+/usr/include/c++/11/bits/ptr_traits.h:
+
+/usr/include/stdint.h:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+
+/usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/rapidjson/internal/strfunc.h:
+
+/usr/include/pistache/http.h:
+
+/usr/include/c++/11/bits/stl_raw_storage_iter.h:
+
+/usr/include/c++/11/tr1/beta_function.tcc:
+
+/usr/include/c++/11/array:
+
+/usr/include/c++/11/iterator:
+
+/usr/include/c++/11/bits/range_access.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/x86_64-linux-gnu/bits/timerfd.h:
+
+/usr/include/pqxx/robusttransaction.hxx:
+
+/usr/include/c++/11/bits/std_thread.h:
+
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
+
+/usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/include/pthread.h:
 
@@ -1831,203 +1926,91 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
-/usr/include/c++/11/bits/unique_lock.h:
+/usr/include/c++/11/cstdint:
 
-/usr/include/c++/11/bits/uses_allocator.h:
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
-/usr/include/c++/11/bits/string_view.tcc:
+/usr/include/x86_64-linux-gnu/bits/in.h:
 
-../include/rapidjson/document.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
-/usr/include/c++/11/pstl/execution_defs.h:
+/usr/include/c++/11/bits/postypes.h:
 
-/usr/include/c++/11/bits/algorithmfwd.h:
+/usr/include/pqxx/array.hxx:
 
-/usr/include/x86_64-linux-gnu/bits/types.h:
+/usr/include/c++/11/vector:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+/usr/include/pqxx/transaction.hxx:
 
-/usr/include/strings.h:
+/usr/include/c++/11/bits/align.h:
 
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
-/usr/include/pqxx/stream_from.hxx:
+/usr/include/pqxx/compiler-public.hxx:
 
-/usr/include/x86_64-linux-gnu/bits/resource.h:
-
-/usr/include/asm-generic/socket.h:
-
-/usr/include/c++/11/bits/invoke.h:
-
-/usr/include/rapidjson/reader.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/timex.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/pqxx/errorhandler:
-
-/usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/c++/11/tr1/poly_hermite.tcc:
-
-../include/rapidjson/allocators.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/c++/11/bits/exception_defines.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
-
-/usr/include/c++/11/ext/numeric_traits.h:
-
-/usr/include/c++/11/bits/atomic_base.h:
-
-/usr/include/features.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
-../HTTPFileServer.cpp:
-
-/usr/include/c++/11/bits/hashtable_policy.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-../include/rapidjson/memorystream.h:
-
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
-
-/usr/include/c++/11/tr1/gamma.tcc:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/c++/11/bits/stl_uninitialized.h:
-
-/usr/include/c++/11/backward/auto_ptr.h:
-
-/usr/include/c++/11/ext/new_allocator.h:
-
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/pqxx/robusttransaction.hxx:
-
-/usr/include/c++/11/bits/std_thread.h:
-
-/usr/include/c++/11/bits/cpp_type_traits.h:
-
-/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-../include/rapidjson/internal/strtod.h:
-
-/usr/include/c++/11/debug/debug.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
-
-/usr/include/features-time64.h:
-
-../include/rapidjson/stream.h:
-
-/usr/include/c++/11/bits/predefined_ops.h:
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/usr/include/rapidjson/stream.h:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/c++/11/initializer_list:
-
-/usr/include/c++/11/iosfwd:
-
-/usr/include/c++/11/bits/regex_executor.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-/usr/include/c++/11/ctime:
-
-/usr/include/alloca.h:
-
-/usr/include/errno.h:
-
-../include/rapidjson/internal/stack.h:
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/pqxx/strconv.hxx:
 
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
 /usr/include/c++/11/ext/aligned_buffer.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
-
-/usr/include/c++/11/bits/stl_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/c++/11/bits/basic_string.h:
-
-/usr/include/c++/11/bits/shared_ptr_base.h:
-
-/usr/include/c++/11/bits/alloc_traits.h:
-
-/usr/include/stdc-predef.h:
-
-../include/rapidjson/internal/meta.h:
-
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/c++/11/memory:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/locale.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
-
-../include/http_server/http_server.h:
-
-/usr/include/c++/11/cassert:
+/usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/rapidjson/internal/diyfp.h:
 
 /usr/include/c++/11/bits/stl_algo.h:
 
-/usr/include/x86_64-linux-gnu/asm/sockios.h:
+/usr/include/c++/11/bits/predefined_ops.h:
 
-/usr/include/math.h:
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
-/usr/include/c++/11/cstring:
+/usr/include/c++/11/bits/parse_numbers.h:
+
+/usr/include/c++/11/bits/regex.h:
+
+/usr/include/pistache/meta.h:
+
+/usr/include/c++/11/bits/shared_ptr_atomic.h:
+
+/usr/include/c++/11/memory:
+
+/usr/include/pistache/string_logger.h:
+
+/usr/include/c++/11/bits/unique_ptr.h:
+
+/usr/include/c++/11/ostream:
+
+/usr/include/c++/11/initializer_list:
+
+/usr/include/c++/11/iosfwd:
+
+/usr/include/c++/11/debug/assertions.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
 /usr/include/c++/11/thread:
 
-/usr/include/c++/11/condition_variable:
-
 /usr/include/c++/11/ratio:
 
-/usr/include/linux/stddef.h:
+/usr/include/c++/11/condition_variable:
 
-/usr/include/c++/11/bits/refwrap.h:
+/usr/include/rapidjson/encodings.h:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/11/bits/std_mutex.h:
+
+../HTTPFileServer.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/rapidjson/reader.h:
+
+/usr/include/x86_64-linux-gnu/bits/timex.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
 
@@ -2035,15 +2018,9 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/ext/concurrence.h:
 
-/usr/include/wctype.h:
-
-/usr/include/sched.h:
-
 /usr/include/c++/11/ext/alloc_traits.h:
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
-
-/usr/include/c++/11/bits/unordered_map.h:
 
 /usr/include/pistache/ssl_wrappers.h:
 
@@ -2059,11 +2036,41 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
+/usr/include/pqxx/largeobject.hxx:
+
+/usr/include/pqxx/internal/type_utils.hxx:
+
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/c++/11/unordered_set:
+
+/usr/include/pqxx/array:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/pqxx/connection_base.hxx:
+
+/usr/include/c++/11/mutex:
+
+/usr/include/pqxx/prepared_statement.hxx:
+
+/usr/include/pistache/http_header.h:
+
 /usr/include/c++/11/tr1/legendre_function.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/rapidjson/error/error.h:
+
+/usr/include/c++/11/functional:
+
+/usr/include/linux/errno.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
@@ -2075,17 +2082,11 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/ext/string_conversions.h:
 
+/usr/include/c++/11/list:
+
 /usr/include/pqxx/row.hxx:
 
 /usr/include/c++/11/bits/nested_exception.h:
-
-/usr/include/c++/11/bits/regex.h:
-
-/usr/include/pistache/meta.h:
-
-/usr/include/c++/11/bits/shared_ptr_atomic.h:
-
-/usr/include/c++/11/bits/parse_numbers.h:
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
@@ -2093,69 +2094,27 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/bits/streambuf.tcc:
 
-/usr/include/c++/11/limits:
+/usr/include/pqxx/util:
 
-../include/rapidjson/encodings.h:
+/usr/include/c++/11/sstream:
 
-../include/rapidjson/encodedstream.h:
+/usr/include/c++/11/istream:
 
-../include/rapidjson/internal/diyfp.h:
-
-/usr/include/c++/11/bits/stream_iterator.h:
-
-/usr/include/c++/11/locale:
-
-/usr/include/ctype.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
-
-/usr/include/pqxx/pipeline.hxx:
-
-/usr/include/c++/11/bits/regex_compiler.tcc:
-
-/usr/include/c++/11/bits/stl_relops.h:
-
-/usr/include/limits.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+/usr/include/c++/11/bits/localefwd.h:
 
 /usr/include/c++/11/bits/regex.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
 
-/usr/include/c++/11/bits/locale_facets.h:
-
-/usr/include/c++/11/bits/exception.h:
-
-../include/rapidjson/error/error.h:
-
-/usr/include/stdio.h:
-
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
-/usr/include/c++/11/bits/stl_list.h:
-
-../include/rapidjson/internal/strfunc.h:
-
-../include/rapidjson/internal/clzll.h:
-
-/usr/include/c++/11/bits/streambuf_iterator.h:
-
-../include/rapidjson/internal/biginteger.h:
-
-/usr/include/c++/11/bits/localefwd.h:
-
 /usr/include/c++/11/clocale:
 
-../include/rapidjson/internal/swap.h:
+/usr/include/c++/11/bits/ostream.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
-/usr/include/c++/11/cctype:
+/usr/include/c++/11/locale:
 
-/usr/include/c++/11/unordered_map:
+/usr/include/ctype.h:
 
 /usr/include/c++/11/bits/ios_base.h:
 
@@ -2167,51 +2126,33 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/string:
 
-/usr/include/c++/11/bits/char_traits.h:
-
-/usr/include/c++/11/ciso646:
-
-../include/rapidjson/reader.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/rapidjson/error/error.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/c++/11/functional:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/c++/11/cstdint:
-
-../include/rapidjson/internal/ieee754.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/11/bits/ostream_insert.h:
 
 /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
 /usr/include/c++/11/string_view:
 
-/usr/include/c++/11/cstdio:
+/usr/include/stdio.h:
 
-/usr/include/pqxx/compiler-internal-post.hxx:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/c++/11/chrono:
+/usr/include/pistache/http_headers.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/c++/11/cerrno:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/sched.h:
+
+/usr/include/wctype.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
@@ -2227,15 +2168,9 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/bits/locale_classes.tcc:
 
-/usr/include/c++/11/system_error:
-
-/usr/include/c++/11/cstddef:
-
-/usr/include/c++/11/bits/stl_vector.h:
+/usr/include/c++/11/utility:
 
 /usr/include/c++/11/ios:
-
-/usr/include/c++/11/utility:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
@@ -2243,38 +2178,54 @@ CMakeFiles/HTTPFileServer.dir/include/http_server/http_server.cpp.o: ../include/
 
 /usr/include/c++/11/stdexcept:
 
-/usr/include/c++/11/bits/std_abs.h:
+/usr/include/c++/11/bits/uniform_int_dist.h:
 
-/usr/include/c++/11/bits/stl_heap.h:
+/usr/include/c++/11/bits/basic_ios.h:
 
-/usr/include/c++/11/bits/hashtable.h:
+/usr/include/c++/11/bits/exception.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
+
+/usr/include/c++/11/cwctype:
+
+/usr/include/c++/11/bits/streambuf_iterator.h:
+
+/usr/include/pqxx/stream_base.hxx:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+/usr/include/c++/11/bits/list.tcc:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/11/bits/locale_facets.tcc:
 
 /usr/include/c++/11/bits/codecvt.h:
 
-/usr/include/c++/11/bits/basic_ios.tcc:
-
 /usr/include/c++/11/bits/enable_special_members.h:
 
-/usr/include/c++/11/bits/ptr_traits.h:
+/usr/include/c++/11/bits/basic_ios.tcc:
 
-/usr/include/stdint.h:
+/usr/include/c++/11/bits/regex_scanner.h:
 
-/usr/include/endian.h:
+/usr/include/c++/11/bits/istream.tcc:
 
-/usr/include/c++/11/bits/erase_if.h:
+/usr/include/pistache/async.h:
 
-/usr/include/pqxx/array:
+/usr/include/c++/11/pstl/glue_memory_defs.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+/usr/include/pistache/typeid.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+/usr/include/c++/11/bits/uses_allocator.h:
 
-/usr/include/c++/11/bits/stl_bvector.h:
+/usr/include/c++/11/bits/unique_lock.h:
 
-/usr/include/c++/11/bits/vector.tcc:
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
-/usr/include/pqxx/util:
+/usr/include/c++/11/bits/stl_list.h:
 
-/usr/include/c++/11/sstream:
+/usr/include/c++/11/bits/stl_map.h:
 
-/usr/include/c++/11/istream:
+/usr/include/c++/11/bits/unordered_set.h:
