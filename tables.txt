@@ -10,7 +10,7 @@ CREATE TABLE FilesData
 
 CREATE TABLE updates
 (    
-    CONSTRAINT UpdateDates_pkey PRIMARY KEY (updateDate),
+    CONSTRAINT UpdateDates_pkey PRIMARY KEY (updateDate, id),
     updateDate timestamp without time zone NOT NULL,
     id text NOT NULL,
     data text NOT NULL

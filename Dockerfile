@@ -13,8 +13,8 @@ RUN apt install -y libpistache-dev
 RUN apt-get update
 
 COPY HTTPFileServer /HTTPFileServer
-RUN mkdir /HTTPFileServer/HTTPFileServer/build/
-WORKDIR /HTTPFileServer/HTTPFileServer/build/
+RUN mkdir /HTTPFileServer/build/
+WORKDIR /HTTPFileServer/build/
 RUN cmake ..
 RUN cmake --build .
 
