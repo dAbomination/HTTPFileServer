@@ -3,7 +3,7 @@
 static const std::string FILES_DATA_TABLE_NAME = "filesdata";
 static const std::string FILES_UPDATES_TABLE_NAME = "updates";
 
-static const std::string DB_NAME = "postgres";
+static const std::string DB_NAME = "postgresql";
 static const std::string DB_USER = "user";
 static const std::string DB_PASSWORD = "123";
 static const std::string DB_HOSTADDR = "172.17.0.2";
