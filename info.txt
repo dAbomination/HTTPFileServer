@@ -21,7 +21,7 @@ cat /etc/hosts
 static const std::string DB_HOSTADDR = "127.0.0.1";
 
 3. Далее добавить таблицы в базе данных, для этого заходим в psql:
-psql -p 5432 -U user -d postgres -h 127.0.0.1
+psql -p 5432 -U user -d postgresql -h 127.0.0.1
 ввести пароль 123 и выполнить 2 команды, создавая необходимые таблицы:
 
 CREATE TABLE "filesdata" (id text PRIMARY KEY NOT NULL, url text, parentId text, type character varying(10) NOT NULL, size bigint, updateDate timestamp without time zone);
@@ -35,3 +35,7 @@ docker build . --tag http_server
 docker run --name http_server -d -p 80:80 --restart unless-stopped http_server 
 
 5. Должно работать.
+
+Что не работает или работает плохо:
+1. Не обновляются updateDate у папок, если в них изменили файлы, соответственно никак не изменяется их история, при изменении файлов внутри.
+2. Размер папок рассчитывается только при выполнении запроса /nodes/{id}
