@@ -1,3 +1,14 @@
+Структура:
+db_adapter - устанавливает соеденение с базой данных, формирует и выполняет sql запросы, преобразует данные ответы в подходящую форму.
+http_server - принимает HTTP запросы, парсит переданные данные, проверят их валидность, преобразует к необходимой структуре и передаёт в db_adapter, на основе полученных данных формирует ответы.
+
+Используемые библиотеки:
+1. Pistache (https://github.com/pistacheio/pistache) 
+2. RapidJSON (https://github.com/Tencent/rapidjson/)
+3. Date (https://github.com/HowardHinnant/date)
+4. Libpqxx (https://github.com/jtv/libpqxx)
+
+Установка:
 1. Развернуть контейнер с Postgresql
 
 docker run --restart unless-stopped --name http_server_db -p 5432:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=postgresql -d postgres
@@ -11,7 +22,7 @@ static const std::string DB_HOSTADDR = "127.0.0.1";
 
 3. Далее добавить таблицы в базе данных, для этого заходим в psql:
 psql -p 5432 -U user -d postgres -h 127.0.0.1
-ввести пароль 123 и выполнить 2 команды:
+ввести пароль 123 и выполнить 2 команды, создавая необходимые таблицы:
 
 CREATE TABLE "filesdata" (id text PRIMARY KEY NOT NULL, url text, parentId text, type character varying(10) NOT NULL, size bigint, updateDate timestamp without time zone);
 
