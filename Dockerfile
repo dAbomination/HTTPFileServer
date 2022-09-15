@@ -18,6 +18,5 @@ WORKDIR /HTTPFileServer/build/
 RUN cmake ..
 RUN cmake --build .
 
-CMD ["./HTTPFileServer"]
 EXPOSE 80
-RUN 
+CMD ["./HTTPFileServer"]
