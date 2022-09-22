@@ -24,7 +24,7 @@ db_adapter::db_adapter() {
     }
 }
 
-void db_adapter::GetIds(FileDependencies& paths) {
+void db_adapter::GetIds(common::FileDependencies& paths) {
     pqxx::work tx(*db_con_);
 
     std::string sql = "SELECT id, parentId FROM " + FILES_DATA_TABLE_NAME;
@@ -42,7 +42,7 @@ void db_adapter::GetIds(FileDependencies& paths) {
     }  
 }
 
-item_imports db_adapter::GetItemInfo(const std::string& id) {
+common::item_imports db_adapter::GetItemInfo(const std::string& id) {
     pqxx::work tx(*db_con_);
 
     std::string sql = "SELECT * \
@@ -93,7 +93,7 @@ std::unordered_set<std::string> db_adapter::GetUpdatedIds(
     return result;
 }
 
-void db_adapter::InsertItem(const item_imports& import_item) {
+void db_adapter::InsertItem(const common::item_imports& import_item) {
     pqxx::work tx(*db_con_);
 
     std::string parentId = "null";
@@ -121,13 +121,13 @@ void db_adapter::InsertItem(const item_imports& import_item) {
     tx.commit();
 }
 
-void db_adapter::InsertItem(const std::vector<item_imports>& import_items) {
+void db_adapter::InsertItem(const std::vector<common::item_imports>& import_items) {
     for(const auto& item : import_items) {
         InsertItem(item);
     }
 }
 
-void db_adapter::UpdateItem(const item_imports& update_item) {
+void db_adapter::UpdateItem(const common::item_imports& update_item) {
     pqxx::work tx(*db_con_);
 
     std::string parentId = "null";
@@ -155,13 +155,13 @@ void db_adapter::UpdateItem(const item_imports& update_item) {
     tx.commit();
 }
 
-void db_adapter::UpdateItem(const std::vector<item_imports>& update_items) {
+void db_adapter::UpdateItem(const std::vector<common::item_imports>& update_items) {
     for(const auto& item : update_items) {
         UpdateItem(item);
     }
 }
 
-void db_adapter::InsertUpdates(const update_date_data& data) {
+void db_adapter::InsertUpdates(const common::update_date_data& data) {
     pqxx::work tx(*db_con_);
     std::string sql = "INSERT INTO " + FILES_UPDATES_TABLE_NAME + " \
         VALUES('" + data.updateDate + "', '" +
@@ -172,7 +172,7 @@ void db_adapter::InsertUpdates(const update_date_data& data) {
     tx.commit();
 }
 
-void db_adapter::InsertUpdates(const std::vector<update_date_data>& data) {
+void db_adapter::InsertUpdates(const std::vector<common::update_date_data>& data) {
     for(const auto& single_data : data) {
         InsertUpdates(single_data);
     }
@@ -198,7 +198,7 @@ void db_adapter::DeleteUpdates(const std::string& id) {
     tx.commit();
 }
 
-std::vector<update_date_data> db_adapter::GetItemHistory(
+std::vector<common::update_date_data> db_adapter::GetItemHistory(
     const std::string& id,
     const std::string& date_start,
     const std::string& date_end) {
@@ -210,7 +210,7 @@ std::vector<update_date_data> db_adapter::GetItemHistory(
         "' and id = '" + id + "'";
     pqxx::result bd_request_result = tx.exec(sql);
 
-    std::vector<update_date_data> result;
+    std::vector<common::update_date_data> result;
     for(auto const& row : bd_request_result) {
         result.push_back({
             row.at(0).as<std::string>(),

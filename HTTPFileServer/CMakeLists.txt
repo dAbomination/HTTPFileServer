@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Set our source files
 set(SOURCE_FILES HTTPFileServer.cpp)
-set(HTTP_SERVER_FILES include/http_server/http_server.h include/http_server/http_server.cpp)
-set(DB_ADAPTER_FILES include/http_server/db_adapter/db_adapter.h include/http_server/db_adapter/db_adapter.cpp)
+set(HTTP_SERVER_FILES http_server.h http_server.cpp)
+set(DB_ADAPTER_FILES db_adapter.h db_adapter.cpp)
 
 find_package(PkgConfig)
 pkg_check_modules(Pistache REQUIRED IMPORTED_TARGET libpistache)

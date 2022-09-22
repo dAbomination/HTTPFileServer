@@ -51,10 +51,10 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
 
     const rapidjson::Value& items = doc["items"];
     // All data for sql request
-    std::vector<item_imports> sql_items_imports;
-    std::vector<item_imports> sql_items_updates; 
+    std::vector<common::item_imports> sql_items_imports;
+    std::vector<common::item_imports> sql_items_updates; 
     // Update date information   
-    std::vector<update_date_data> sql_update_dates;  
+    std::vector<common::update_date_data> sql_update_dates;  
 
     for(size_t i = 0; i < items.Size(); ++i){
         // id cant be null, and if it is a FILE, size cant be null
@@ -77,7 +77,7 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
             item_url = items[i]["url"].GetString();            
         }
 
-        item_imports temp_import = {
+        common::item_imports temp_import = {
             items[i]["id"].GetString(),
             item_url,
             parentId,
@@ -181,7 +181,7 @@ void http_server::UpdatesRequest(const Rest::Request& req, Http::ResponseWriter 
     rapidjson::Document doc;
     rapidjson::Value json_response(rapidjson::kArrayType);
     for(const auto& item_id : updated_items_id) {
-        item_imports item_info = std::move(db_.GetItemInfo(item_id));        
+        common::item_imports item_info = std::move(db_.GetItemInfo(item_id));        
         rapidjson::Value json_item_info(rapidjson::kObjectType);
 
         json_item_info.AddMember("id",
@@ -292,7 +292,7 @@ void http_server::GetItemTreeInformation(
     rapidjson::Document& doc,
     int64_t& folder_size) {
     
-    item_imports item_info = std::move(db_.GetItemInfo(id));
+    common::item_imports item_info = std::move(db_.GetItemInfo(id));
     // First adding item with id info     
     // Add file info to json answer
     json_info.AddMember("id",
@@ -318,7 +318,7 @@ void http_server::GetItemTreeInformation(
         doc.GetAllocator());
 
     // For File field "children" = null
-    if( item_info.type == item_type::FILE_ITEM ) {
+    if( item_info.type == common::item_type::FILE_ITEM ) {
         // Add size
         json_info.AddMember("size",
         rapidjson::Value().SetInt64(item_info.size.value()),
@@ -328,7 +328,7 @@ void http_server::GetItemTreeInformation(
         json_info.AddMember("children", rapidjson::Value(), doc.GetAllocator());
     }  
     // For empty folder size = 0;
-    else if( item_info.type == item_type::FOLDER_ITEM ) {
+    else if( item_info.type == common::item_type::FOLDER_ITEM ) {
         rapidjson::Value children_array(rapidjson::kArrayType);        
         // Folder has children
         if(ids_to_children_.at(id).size() > 0) {            

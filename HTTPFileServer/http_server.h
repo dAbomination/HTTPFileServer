@@ -7,12 +7,12 @@
 #include <chrono>
 #include <sstream>
 
-#include "date/date.h"
-#include "../include/rapidjson/document.h" 
-#include "../include/rapidjson/stringbuffer.h"
-#include "../include/rapidjson/writer.h"
-#include "db_adapter/db_adapter.h"
-
+#include "include/date/date.h"
+#include "include/rapidjson/document.h" 
+#include "include/rapidjson/stringbuffer.h"
+#include "include/rapidjson/writer.h"
+#include "db_adapter.h"
+#include "common.h"
 
 using namespace Pistache;
 using namespace Pistache::Rest;
@@ -60,5 +60,5 @@ private:
     Rest::Router router_;    
     db_adapter db_;
 
-    FileDependencies ids_to_children_;
+    common::FileDependencies ids_to_children_;
 };
