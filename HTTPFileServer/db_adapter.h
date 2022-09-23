@@ -11,6 +11,15 @@
 
 #include "common.h"
 
+static const std::string FILES_DATA_TABLE_NAME = "filesdata";
+static const std::string FILES_UPDATES_TABLE_NAME = "updates";
+
+static const std::string DB_NAME = "postgresql";
+static const std::string DB_USER = "user";
+static const std::string DB_PASSWORD = "123";
+static const std::string DB_HOSTADDR = "127.0.0.1";
+static const std::string DB_PORT = "5432";
+
 static const std::unordered_map<common::item_type, std::string> item_type_to_str = {
     { common::item_type::FILE_ITEM,     "FILE"      },
     { common::item_type::FOLDER_ITEM,   "FOLDER"    }
@@ -53,5 +62,7 @@ public:
     void DeleteItem(const std::string& id);
     void DeleteUpdates(const std::string& id);
 private:
-    std::unique_ptr<pqxx::connection> db_con_;    
+    std::unique_ptr<pqxx::connection> db_con_;
+
+    pqxx::result ExecuteRequest(const std::string& sql_req);
 };
