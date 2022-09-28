@@ -57,7 +57,7 @@ common::item_imports db_adapter::GetItemInfo(const std::string& id) {
         id,
         url,
         parentId,
-        str_to_item_type.at(bd_request_result.at(0).at(3).c_str()),
+        common::str_to_item_type.at(bd_request_result.at(0).at(3).c_str()),
         size,
         bd_request_result.at(0).at(5).as<std::string>()
     };
@@ -81,29 +81,7 @@ std::unordered_set<std::string> db_adapter::GetUpdatedIds(
 }
 
 void db_adapter::InsertItem(const common::item_imports& import_item) {    
-
-    std::string parentId = "null";
-    if(import_item.parentId.has_value()) {
-        parentId = "'" + import_item.parentId.value() + "'";
-    }    
-    std::string size = "null";
-    if(import_item.size.has_value()) {
-        size = std::to_string(import_item.size.value()); 
-    }
-    std::string url = "null";
-    if(import_item.url.has_value()) {
-        url = "'" + import_item.url.value() + "'"; 
-    }
-
-    std::string sql = "INSERT INTO " + FILES_DATA_TABLE_NAME + " \
-        VALUES('" + import_item.id + "', " +
-        url + " , " + 
-        parentId + ", '" +
-        item_type_to_str.at(import_item.type) + "'," +
-        size + " , '" +
-        import_item.updateDate + "')";
-
-    ExecuteRequest(sql);
+    ExecuteRequest(std::move(sql_request::Insert(FILES_DATA_TABLE_NAME, import_item)));
 }
 
 void db_adapter::InsertItem(const std::vector<common::item_imports>& import_items) {
@@ -130,7 +108,7 @@ void db_adapter::UpdateItem(const common::item_imports& update_item) {
     std::string sql = "UPDATE " + FILES_DATA_TABLE_NAME + " \
         SET url = " + url + " , " +
         "parentId = " + parentId + ", " +
-        "type = '" + item_type_to_str.at(update_item.type) + "', " +
+        "type = '" + common::item_type_to_str.at(update_item.type) + "', " +
         "size = " + size + ", " +
         "updateDate = '" + update_item.updateDate + "' " +
         "WHERE id = '" + update_item.id + "'";
@@ -144,13 +122,8 @@ void db_adapter::UpdateItem(const std::vector<common::item_imports>& update_item
     }
 }
 
-void db_adapter::InsertUpdates(const common::update_date_data& data) {    
-    std::string sql = "INSERT INTO " + FILES_UPDATES_TABLE_NAME + " \
-        VALUES('" + data.updateDate + "', '" +
-        data.id + "' , '" + 
-        data.raw_json_data + "')";
-
-    ExecuteRequest(sql);
+void db_adapter::InsertUpdates(const common::update_date_data& data) { 
+    ExecuteRequest(std::move(sql_request::Insert(FILES_UPDATES_TABLE_NAME, data)));
 }
 
 void db_adapter::InsertUpdates(const std::vector<common::update_date_data>& data) {

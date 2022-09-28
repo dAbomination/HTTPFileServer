@@ -81,7 +81,7 @@ void http_server::ImportsRequest(const Rest::Request& req, Http::ResponseWriter 
             items[i]["id"].GetString(),
             item_url,
             parentId,
-            str_to_item_type.at(items[i]["type"].GetString()),
+            common::str_to_item_type.at(items[i]["type"].GetString()),
             item_size,
             update_date
         };
@@ -198,7 +198,7 @@ void http_server::UpdatesRequest(const Rest::Request& req, Http::ResponseWriter 
             rapidjson::Value().Move(),
             doc.GetAllocator());
         json_item_info.AddMember("type",
-            rapidjson::Value(item_type_to_str.at(item_info.type).c_str(), doc.GetAllocator()).Move(),
+            rapidjson::Value(common::item_type_to_str.at(item_info.type).c_str(), doc.GetAllocator()).Move(),
             doc.GetAllocator());
         ConvertTimeStr(item_info.updateDate);    
         json_item_info.AddMember("date",
@@ -309,7 +309,7 @@ void http_server::GetItemTreeInformation(
         rapidjson::Value(),
         doc.GetAllocator());
     json_info.AddMember("type",
-        rapidjson::Value(item_type_to_str.at(item_info.type).c_str(), doc.GetAllocator()),
+        rapidjson::Value(common::item_type_to_str.at(item_info.type).c_str(), doc.GetAllocator()),
         doc.GetAllocator());    
 
     ConvertTimeStr(item_info.updateDate);    

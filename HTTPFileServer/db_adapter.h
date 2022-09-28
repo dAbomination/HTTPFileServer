@@ -10,6 +10,7 @@
 #include <string_view>
 
 #include "common.h"
+#include "sql_request.h"
 
 static const std::string FILES_DATA_TABLE_NAME = "filesdata";
 static const std::string FILES_UPDATES_TABLE_NAME = "updates";
@@ -19,16 +20,6 @@ static const std::string DB_USER = "user";
 static const std::string DB_PASSWORD = "123";
 static const std::string DB_HOSTADDR = "127.0.0.1";
 static const std::string DB_PORT = "5432";
-
-static const std::unordered_map<common::item_type, std::string> item_type_to_str = {
-    { common::item_type::FILE_ITEM,     "FILE"      },
-    { common::item_type::FOLDER_ITEM,   "FOLDER"    }
-};
-
-static const std::unordered_map<std::string, common::item_type> str_to_item_type = {
-    { "FILE",       common::item_type::FILE_ITEM    },
-    { "FOLDER",     common::item_type::FOLDER_ITEM  }
-};
 
 // Implements adding, deleting and updating the database
 class db_adapter {
