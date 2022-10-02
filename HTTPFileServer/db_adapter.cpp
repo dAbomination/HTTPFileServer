@@ -1,14 +1,5 @@
 #include "db_adapter.h"
 
-static const std::string FILES_DATA_TABLE_NAME = "filesdata";
-static const std::string FILES_UPDATES_TABLE_NAME = "updates";
-
-static const std::string DB_NAME = "postgresql";
-static const std::string DB_USER = "user";
-static const std::string DB_PASSWORD = "123";
-static const std::string DB_HOSTADDR = "172.17.0.2";
-static const std::string DB_PORT = "5432";
-
 // Connect to database
 db_adapter::db_adapter() {    
     try {     
@@ -18,19 +9,18 @@ db_adapter::db_adapter() {
             password = " + DB_PASSWORD + "\
             hostaddr = " + DB_HOSTADDR + "\
             port = " + DB_PORT );
+        //std::cout << "Connected to DB: " + DB_NAME << std::endl;
     }
     catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
 }
 
-void db_adapter::GetIds(common::FileDependencies& paths) {
-    pqxx::work tx(*db_con_);
-
-    std::string sql = "SELECT id, parentId FROM " + FILES_DATA_TABLE_NAME;
-    pqxx::result res = tx.exec(sql);
+void db_adapter::GetIds(common::FileDependencies& paths) { 
+    std::string sql = "SELECT id, parentId FROM " + FILES_DATA_TABLE_NAME + "";
+    pqxx::result bd_request_result = std::move(ExecuteRequest(sql));
     
-    for(auto const& row : res) {
+    for(auto const& row : bd_request_result) {
         if(!row.at(1).is_null()) {
             paths[row.at(1).c_str()].insert(row.at(0).c_str());
             paths[row.at(0).c_str()];            
@@ -39,51 +29,48 @@ void db_adapter::GetIds(common::FileDependencies& paths) {
         else {
             paths[row.at(0).c_str()];            
         }
-    }  
+    }      
 }
 
-common::item_imports db_adapter::GetItemInfo(const std::string& id) {
-    pqxx::work tx(*db_con_);
-
+common::item_imports db_adapter::GetItemInfo(const std::string& id) {    
     std::string sql = "SELECT * \
         FROM " + FILES_DATA_TABLE_NAME + " \
         WHERE id = '" + id + "'";        
     // The check for existence was earlier,
     // which means that with the same id there is only 1 result
-    pqxx::result res = tx.exec(sql);
+    pqxx::result bd_request_result = std::move(ExecuteRequest(sql));
 
     std::optional<std::string> url = std::nullopt;
-    if(!res.at(0).at(1).is_null()) {
-        url = res.at(0).at(1).c_str();
+    if(!bd_request_result.at(0).at(1).is_null()) {
+        url = bd_request_result.at(0).at(1).c_str();
     }
     std::optional<std::string> parentId = std::nullopt;
-    if(!res.at(0).at(2).is_null()) {
-        parentId = res.at(0).at(2).c_str();
+    if(!bd_request_result.at(0).at(2).is_null()) {
+        parentId = bd_request_result.at(0).at(2).c_str();
     }
     std::optional<int64_t> size = std::nullopt;
-    if(!res.at(0).at(4).is_null()) {
-        size = res.at(0).at(4).as<int64_t>();
+    if(!bd_request_result.at(0).at(4).is_null()) {
+        size = bd_request_result.at(0).at(4).as<int64_t>();
     }
     
     return {
         id,
         url,
         parentId,
-        str_to_item_type.at(res.at(0).at(3).c_str()),
+        common::str_to_item_type.at(bd_request_result.at(0).at(3).c_str()),
         size,
-        res.at(0).at(5).as<std::string>()
+        bd_request_result.at(0).at(5).as<std::string>()
     };
 }
 
 std::unordered_set<std::string> db_adapter::GetUpdatedIds(
     const std::string& from_date,
     const std::string& to_date) {
-
-    pqxx::work tx(*db_con_);
+    
     std::string sql = "SELECT id FROM updates WHERE \
         updatedate >= '" + from_date +
         "' and updatedate <= '" + to_date + "'";
-    pqxx::result bd_request_result = tx.exec(sql);
+    pqxx::result bd_request_result = std::move(ExecuteRequest(sql));
 
     std::unordered_set<std::string> result;
     for(auto const& row : bd_request_result) {
@@ -93,32 +80,8 @@ std::unordered_set<std::string> db_adapter::GetUpdatedIds(
     return result;
 }
 
-void db_adapter::InsertItem(const common::item_imports& import_item) {
-    pqxx::work tx(*db_con_);
-
-    std::string parentId = "null";
-    if(import_item.parentId.has_value()) {
-        parentId = "'" + import_item.parentId.value() + "'";
-    }    
-    std::string size = "null";
-    if(import_item.size.has_value()) {
-        size = std::to_string(import_item.size.value()); 
-    }
-    std::string url = "null";
-    if(import_item.url.has_value()) {
-        url = "'" + import_item.url.value() + "'"; 
-    }
-
-    std::string sql = "INSERT INTO " + FILES_DATA_TABLE_NAME + " \
-        VALUES('" + import_item.id + "', " +
-        url + " , " + 
-        parentId + ", '" +
-        item_type_to_str.at(import_item.type) + "'," +
-        size + " , '" +
-        import_item.updateDate + "')";
-
-    tx.exec(sql);
-    tx.commit();
+void db_adapter::InsertItem(const common::item_imports& import_item) {    
+    ExecuteRequest(std::move(sql_request::Insert(FILES_DATA_TABLE_NAME, import_item)));
 }
 
 void db_adapter::InsertItem(const std::vector<common::item_imports>& import_items) {
@@ -127,8 +90,7 @@ void db_adapter::InsertItem(const std::vector<common::item_imports>& import_item
     }
 }
 
-void db_adapter::UpdateItem(const common::item_imports& update_item) {
-    pqxx::work tx(*db_con_);
+void db_adapter::UpdateItem(const common::item_imports& update_item) {    
 
     std::string parentId = "null";
     if(update_item.parentId.has_value()){
@@ -146,13 +108,12 @@ void db_adapter::UpdateItem(const common::item_imports& update_item) {
     std::string sql = "UPDATE " + FILES_DATA_TABLE_NAME + " \
         SET url = " + url + " , " +
         "parentId = " + parentId + ", " +
-        "type = '" + item_type_to_str.at(update_item.type) + "', " +
+        "type = '" + common::item_type_to_str.at(update_item.type) + "', " +
         "size = " + size + ", " +
         "updateDate = '" + update_item.updateDate + "' " +
         "WHERE id = '" + update_item.id + "'";
 
-    tx.exec(sql);
-    tx.commit();
+    ExecuteRequest(sql);
 }
 
 void db_adapter::UpdateItem(const std::vector<common::item_imports>& update_items) {
@@ -161,15 +122,8 @@ void db_adapter::UpdateItem(const std::vector<common::item_imports>& update_item
     }
 }
 
-void db_adapter::InsertUpdates(const common::update_date_data& data) {
-    pqxx::work tx(*db_con_);
-    std::string sql = "INSERT INTO " + FILES_UPDATES_TABLE_NAME + " \
-        VALUES('" + data.updateDate + "', '" +
-        data.id + "' , '" + 
-        data.raw_json_data + "')";
-
-    tx.exec(sql);
-    tx.commit();
+void db_adapter::InsertUpdates(const common::update_date_data& data) { 
+    ExecuteRequest(std::move(sql_request::Insert(FILES_UPDATES_TABLE_NAME, data)));
 }
 
 void db_adapter::InsertUpdates(const std::vector<common::update_date_data>& data) {
@@ -179,23 +133,15 @@ void db_adapter::InsertUpdates(const std::vector<common::update_date_data>& data
 }
 
 void db_adapter::DeleteItem(const std::string& id) {
-    pqxx::work tx(*db_con_);
-
     std::string sql = "DELETE FROM " + FILES_DATA_TABLE_NAME + " \
         WHERE id = '" + id + "'" ;
-
-    tx.exec(sql);
-    tx.commit();
+    ExecuteRequest(sql);
 }
 
-void db_adapter::DeleteUpdates(const std::string& id) {
-    pqxx::work tx(*db_con_);
-
+void db_adapter::DeleteUpdates(const std::string& id) {    
     std::string sql = "DELETE FROM " + FILES_UPDATES_TABLE_NAME + " \
         WHERE id = '" + id + "'" ;
-
-    tx.exec(sql);
-    tx.commit();
+    ExecuteRequest(sql);
 }
 
 std::vector<common::update_date_data> db_adapter::GetItemHistory(
@@ -203,12 +149,11 @@ std::vector<common::update_date_data> db_adapter::GetItemHistory(
     const std::string& date_start,
     const std::string& date_end) {
 
-    pqxx::work tx(*db_con_);
     std::string sql = "SELECT * FROM updates WHERE \
         updatedate >= '" + date_start +
         "' and updatedate < '" + date_end +
         "' and id = '" + id + "'";
-    pqxx::result bd_request_result = tx.exec(sql);
+    pqxx::result bd_request_result = std::move(ExecuteRequest(sql));
 
     std::vector<common::update_date_data> result;
     for(auto const& row : bd_request_result) {
@@ -219,4 +164,11 @@ std::vector<common::update_date_data> db_adapter::GetItemHistory(
         });
     } 
     return result; 
+}
+
+pqxx::result db_adapter::ExecuteRequest(const std::string& sql_req) {
+    pqxx::work tx(*db_con_);
+    pqxx::result bd_request_result = tx.exec(sql_req);    
+    tx.commit();
+    return bd_request_result;
 }
